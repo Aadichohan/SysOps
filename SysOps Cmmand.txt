@@ -1,0 +1,10 @@
+df = show partition and mount point
+df -h = show partition and mount point with memorysize
+date = to get current system date time
+pwd = to see current location
+mkdir = to make directory
+touch <filename> = to create new file
+rm <filename> = remove file but asked fr confirmation
+rm -rf <filename> = remve file flag (-rf = recrusive forcefully) but dont ask for confirmation to be used carefully
+whatis <command name > = show short description about command
+man <command name> = show complete detail about cmmand 
