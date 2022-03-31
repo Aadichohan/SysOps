@@ -20,3 +20,5 @@ ctrl + shift + n = to open new terminal from existing one
 id = to know which user i am login
 su - <username>
 useradd <username> = to add new user
+vi <fileName> = file opens in editor and the press esc and type :wq and enter
+cat <filename> = print content of file 
