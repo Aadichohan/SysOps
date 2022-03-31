@@ -1,0 +1,20 @@
+Location Purpose
+/usr       =  Installed software, shared libraries.
+/usr/bin:  = user commands
+/usr/sbin: =  sysadmin commands
+/home      = Home directories where users store
+              their personal data& config files
+/boot      = Files needed to start boot process
+
+/dev       = Contains special device files that are
+             used by systemt to access hardware
+/etc       = Config files specific to system
+lost+found = this directory contains data recoverd
+             files
+/lib       = Contains .so file shared object files
+/var       = Files that dynamically changes, such
+             as DB,log files
+/opt       = Optional directory for installing 3rd
+             party softwares. Not much that
+             important
+/mnt       = Used for mountpoints

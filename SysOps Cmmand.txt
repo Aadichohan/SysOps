@@ -4,7 +4,19 @@ date = to get current system date time
 pwd = to see current location
 mkdir = to make directory
 touch <filename> = to create new file
+touch <filename{1..10}> = to create file with same num but with incremented num
 rm <filename> = remove file but asked fr confirmation
 rm -rf <filename> = remve file flag (-rf = recrusive forcefully) but dont ask for confirmation to be used carefully
 whatis <command name > = show short description about command
 man <command name> = show complete detail about cmmand 
+<command> --help = to know about command flags
+cd .. = to goback one directory
+cd ~ = to on root directory
+cd / = to go on root directory
+ls /home/Downloads/<filename> = to list file for example from root to other child directory
+mv <filename> = to move file from one directory to another
+cp <filename> = to copy file from one directory to another
+ctrl + shift + n = to open new terminal from existing one
+id = to know which user i am login
+su - <username>
+useradd <username> = to add new user
