@@ -1,0 +1,84 @@
+vi <filename>
+:set nu = for setting row num
+:set nonu = for hiding row num
+:<row-num> = to go to any specific row
+/<string-to-be searched> = to search any apecific word in file
+/<string-to-be searched> press n = to search any apecific word by word in file
+/<string-to-be searched> press shift+n = to reverse search any apecific word by word in file
+
+arch = command to get architechture 64/32 bit
+uname -m = command to get architechture 64/32 bit
+uname -r = command for Linux kernal version
+cat /etc/redhat-release = command to get = centOs version
+
+----- ownership permission ------
+-rw-rw-r--. 1 aadi aadi 350 Mar 18 12:29 <file-name>
+there are 9 segments
+
+-            = fileType         1
+rw-rw-r--    = permission       2
+.            = selinux          3
+1            = link counter     4
+aadi         = owner            5
+aadi         = group            6
+350          = file-size        7
+Mar 18 12:29 = AccessTime file  8
+file-name    = file-name        9
+
+rw-rw-r-- = is sub divided into 3 parts
+rw-       = owner permision
+rw-       = group permission
+r--       = others permission
+
+there are many filetypes
+- = regularfile, 
+d = directory , 
+l = softlink/symlink file
+b = blockFile
+c = character file = used in boot process
+s = socket file = used in driver
+p = pipe device file
+
+u = user
+g = group
+o = other user
+a = all
+chmod u+rwx <file/folder> = to give user all rights
+chmod u-rwx <file/folder> = to revoke user all rights
+
+chmod g+rwx <file/folder> = to give group all rights
+chmod g-rwx <file/folder> = to revoke group all rights
+
+chmod o+rwx <file/folder> = to give other user all rights
+chmod o-rwx <file/folder> = to revoke other user all rights
+
+chmod a+rwx <file/folder> = to give all user, groups and other  all rights
+chmod a-rwx <file/folder> = to revoke all user, groups and other all rights
+
+-- create/delete/modify user --
+useradd --help = to check all flags
+useradd <username>
+useradd -c "<caption>" -m <username> -s "/bin/bash" = to give bash permission 
+and create user dir in home directory
+
+userdel --help
+userdel <username> =  to delete user
+
+usermod --help
+usermod -L <username> = to lock user
+usermod -U <username> = to unlock user
+usermod -G <username> = add user to suplimentory group
+usermod -g <username> = add user to primary group
+usermod -c "<new caption>" <username> = to modify user caption
+
+
+chown file/folder <user-name> =  to change owner
+chgrp file/folder <user-name> = to change group
+
+add user to sudoers file
+/etc/sudoers
+%<username>  ALL=(ALL) ALL
+
+ls -ld <dirname> =  to show directories not their contents
+ls -a            = to show all hidden file and folder in directory
+

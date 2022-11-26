@@ -1,0 +1,92 @@
+step 00 = echo "- - -" > /sys/class/scsi_host/host0/scan = to discover new inserted storage to sd* drivers
+step 0 = fdisk -l = to longlist all sd* driver
+step 1 = fdisk
+step 2 = create partition
+step 3 = press w to save partition table
+       = press p to print all child drivers in specific parent driver from fdisk menu
+       = press d to delete specific child driver from fdisk menu
+step 4 = partx -a /dev/sd*  or partprobe /dev/sd* = to update kernal table 
+(in case if system reboots then no need to run this command)
+
+step 5 = format disk = using mkfs.ext3 or mkfs.ext4 /dev/sd* ,
+type mkfs & press tab key = to see all available formatting methods
+there are different types of formatting commands (ext2, ext3, ext4, xfs, cramfs, fat, msdos, btrfs, minix, vfat) 
+some other fs formates (ZFS, GFS, HDFS, CIFS, NFS)
+there is no thumb rule to use any specific format for any specific version
+Format          ext2    ext3    ext4    xfs
+RHEL Linux OS    v4      v5      v6     v7/8
+
+step 6 = mkdir <folder-name>
+step 7 = mount /dev/sd* /<dir-name> = to mount driver to a folder
+step 8 = df -h = check mounted partition
+
+this mount is not persistent it is loaded into ram if machine is reloaded then  the partition will be unmount
+so to make it persistent & auto mount  we have to add it inot /etc/fstab file
+why to add into fstab file ? because it's a boot process file means it loads when machine 
+load/boots it stores mounting details
+fstab means = file system table, it is said to be 9th critical file in linux
+Q: how many fields in fstab file?
+A: There are 6 fields
+
+umount /<dir-name>/ = to unmount partition
+-----------------
+/etc/fstab
+it is used to create automount on system reboot, it has 6 arguments
+1 - device driver
+2 - mount point
+3 - fileSystem type
+4 - permission
+5 - fsckdump
+6 - fsck on off sequence
+
+for example:
+/dev/sdb1            /phpmyadmin          ext4               default         0           0
+(device driver)      (mount point)   (fileSystem type)    (permission)   (fsckdump)   (fsckOnOffSequence)
+
+in v6 or earlier
+
+add mount device as like given example above
+
+in v7/8
+
+add mount device as like given example above
+or
+blkid = this command create UUID for all device drivers
+
+UUID                       /<dir-name>        fileSystemType     default          0                0 
+(device driver UUID)      (mount point)   (fileSystem type)    (permission)   (fsckdump)   (fsckOnOffSequence)
+--------------------
+wild cards 
+1 - {1..10} 
+
+touch text{1..10}.txt
+--------------------
+redirection ">"
+
+ls > filename = to add/overwrite all list data to file
+ls -l > filename = to add/overwrite all list data to file
+history > filename = to add/overwrite all history data to file
+
+append ">>"
+ls >> filename = to append all list data to file without overwriting previous data
+ls -l >> filename = to append all list data to file without overwriting previous data
+history >> filename = to append all history data to file without overwriting previous data
+
+
+gzip <file-name> = to compress file
+gzip -d <file-name> = to decompress file
+or
+gunzip <file-name> = to decompress file
+
+
+bzip2 <file-name> = to compress file
+bzip2 -d <file-name> = to decompress file
+or
+bunzip2 <file-name> = to decompress file
+
+xz <file-name> = to compress file
+xz -d <file-name> = to decompress file
+or
+unxz <file-name> = to decompress file
+
+zip <zip-file-name> <file/folder name> = to compress & archive

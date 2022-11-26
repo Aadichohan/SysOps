@@ -1,0 +1,117 @@
+in technical term comprssion is called deflated & decompress is called inflated
+file <file-name> = to know about file type
+
+mv <filename> <fileNewName> = to rename file
+alsp use rename command
+
+mv <filename> ./path/<fileNewName> = to move file from current folder to child folder
+mv <filename> /path/<fileNewName> = to move file from current folder to other folder
+ cp command to copy file
+
+to compress single file
+when we run compression it creates headers metadata to compress file
+gzip  = for small size files bit fast low compression
+bzip2 = for large size files bit slow high compression
+xz    = for compression
+-----------
+0 bytes file does not need to compress
+png file does not compress 
+txt & doc file compress
+----------
+to Compress and Archive
+zip
+tar = only archives but to compress add extra flags
+----------
+whatis gzip
+man gzip
+gzip --help = to search for command's flags
+gzip <file-name> = to compress files
+zcat <compressed-file-name.gz>    = to print compressed file content
+
+gzip -d <compressed-file-name.gz> = to decompress file
+or
+gunzip <compressed-file-name.gz>  = to decompress file
+
+-----
+
+whatis bzip2
+man bzip2
+bzip2 --help
+bzip2 <file-name> =  to compress file
+bzcat <compressed-file-name.bz>    = to print compressed file content
+
+bzip2 -d <compressed-file-name.bz> = to decompress file
+or
+bunzip2 <compressed-file-name.bz> = to decompress file
+-------
+
+whatis xz
+man xz
+xz --help
+xz <file-name> =  to compress file
+xz -d <compressed-file-name.xz> = to decompress file
+or 
+unxz <compressed-file-name.xz> = to decompress file
+---------------
+zip & tar alre also backup toll
+--------------------
+whatis zip
+man zip
+zip --help
+
+zip <zip-file-name.zip> <filenames> = to compress and archive files
+or
+zip <zip-file-name.zip> *             = to compress and archive files
+zip <zip-file-name.zip> /path/ *      = to compress and archive files from more than one directory
+zip /path/<zip-file-name.zip> /path/ *      = to compress and archive files from more than one directory 
+                                              to other directory
+zip fun.piz *                         = to compress & archive files with wrong extension
+file fun.piz                          = to check file type 
+unzip -l <zip-file-name.zip>          = to scan zip file content
+
+whatis unzip
+man unzip
+unzip --help
+
+unzip <zip-file-name.zip>           = to unzip files on current location
+unzip -d <path ><zip-file-name.zip> = to unzip files on other location
+
+Q: How to add new file into existing zip file ?
+A: zip <existing-file.zip> <new-file-name>
+
+Q: How to extract specific file from zip?
+A: unzip <existing-file.zip> <file-name>
+A: unzip <existing-file.zip> folder/<file-name> = to extract file from archived folder
+A: unzip -d <path> <existing-file.zip> folder/<file-name> = to extract file to other folder from archived folder
+
+Q: How to extract password protect zip file?
+A: zip -e <zip-file-name.zip> <filename.txt> = use -r to protect with password
+
+Q: How to change compression ratio zip file ?
+------------------------
+Linux native tool
+whatis tar
+man tar
+tar --help
+tar -cvf <tar-file-name.tar> <filenames> = to only archive files
+tar -cvf <tar-file-name.tar> filq1 file2 = to only archive 2 files/part2
+tar -cvf <tar-file-name.tar> /path/ *      = to archive files from more than one directory
+tar -cvf /path/<zip-file-name.tar> /path/ *   = to compress and archive files from more than one directory 
+                                                to other directory
+tar fun.rat *                                 = to compress & archive files with wrong extension you can decompress or 
+                                                dearchive by normal method
+file fun.rat                                  = to check file type  
+
+tar -cvf <tar-file-name.tar> *           = to only archive all files on current location
+tar -tvf <tar-file-name.tar>             = to scan and list all items in tar file
+
+tar -zcvf <tar-file-name.tar.gz> <filenames> = to gzip format compress & archive files
+tar -zcvf <tar-file-name.tar.gz> *           = to gzip format compress & archive all files on current location
+
+
+tar -jcvf <tar-file-name.tar.bz> <filenames> = to bzip2 format compress & archive files
+tar -jcvf <tar-file-name.tar.bz> *           = to bzip2 format compress & archive all files on current location
+
+tar -xvf <filename.tar>                      = to extract tar archived file
+tar -zxvf <tar-file-name.tar.gz> <filenames> = to extract gzip compressed format archive file
+tar -jxvf <tar-file-name.tar.gz> *           = to extract bzip  compressed format archive file

@@ -1,0 +1,9 @@
+touch <file-name> {1..10} = to create  file with name starting with file name and increment by 1
+
+whoami = to see the loggedin user
+id     = to see detail of loggedin user
+
+su - <user-name> = to switch user
+
+Relative path = to go step by step 
+Absolute Path = fully named path

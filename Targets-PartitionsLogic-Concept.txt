@@ -1,0 +1,203 @@
+cat /etc/redhat-release = to print redhat release version
+
+in CentOs 6 or older
+runlevels from 0 to 6
+
+in CentOS 7/8
+runlevels and targets are used 
+many targets ...
+mostly use 
+multi-user.target  = in CentOs 6 runlevel 3,
+graphical.target   = in CentOs 6 runlevel 5
+
+to check current runlevel/target
+v6 
+runlevel
+v7/8
+
+v6  ... switch between runlevels
+init 3
+init 5
+
+v7/8 ... switch between runlevels/targets
+init 3
+init 5
+
+or
+
+systemctl isolate multi-user.target
+systemctl isolate graphical.target
+
+ -- set default target/runlevel --
+v6
+vi /etc/initab
+#type
+id:3:initdefault:  
+
+v7/8
+systemctl set-default multi-user.target = to set default target
+systemctl set-default graphical.target  = to set default target
+systemctl set-default runlevel3         = to set default target
+
+systemctl get-default = to print default target
+
+v6
+we have runlevel1 = single usermode
+
+v7/8
+we donot have single usermode
+we have to break initramfs get shell from inside
+and then user mount -o remount rw /sysroot/ and 
+chroot /sysroot command
+touch /.autorelabel
+exit
+exit
+
+in v6
+init 3 = to get to runlevel 3
+init 5 = to get to runlevel 5
+
+v7/8
+in v7/8 we use targets
+
+init 3 = to get to runlevel 3
+init 5 = to get to runlevel 5
+or 
+systemctl isolate multi-user.target = to goto runlevel 3
+systemctl isolate graphical.target  = to goto runlevel 5
+
+-----
+To Detect new added storage in fdisk without system reboot or shutdown
+
+echo "- - -" > /sys/class/scsi_host/host0/scan
+----
+Add storage, partition, format & mount
+fdisk -l = to list all drivers sd*
+ls /dev/sd* = list all sd*
+
+fdisk /dev/sdb
+ command (m for help):
+m = for menu
+p = for printing all partitions
+d = for deleting  partition
+w = for saving int partition table
+n = for making new partition
+after pressing n we get to option
+p = for primary partition 
+e = for Extended partition
+
+Note: we only can create 4 primary partition if we have to create more than 4 partition
+let suppose 6 partition then we have to make 3 primary partition and 1 Extended partition for rest of all 
+remaining sectors/cylinder and then we have to make remaining 3 partition into extended partitions
+
+V6
+we give space of partiton in cylinder, Bytes, KBs, MBs, GBs etc..
+1 cylinder = given cylinder value
+example:
+1 cylinder = 8MB
+and we have to make 240MB partition then
+30 Cylinder * 8MB = 240MB
+then starting cylinder will be default 0 and 
+Last Cylinder value will be starting value + 30 = 30
+
+V7/8
+we give space of partiton in Sectors, Bytes, KBs, MBs, GBs etc..
+1 Sectors = given Sectors value
+example:
+1 Sectors = 512 Bytes
+and we have to make 240MB partition then
+495000 Sectors * 512B = 240MB
+then starting Sectors will be default  0 and 
+Last Sectors value will be starting value + 495000 = 495000 
+
+partx -a /dev/sd<?> = to update kernel table for partition
+
+mkfs.ext4 /dev/sdb1 = to  format partition
+
+mkdir /<dir-name>/
+
+mount  /dev/sd<?> /<dir-name>
+
+== To unmount == 
+umount  /dev/sd<?>
+
+------
+
+if hard disk is in GBs
+1 Cylinder = 8MB approx.
+Number of cylinder * 8MB / 1024 = nth GB
+
+if hard disk is in MBs
+1 Cylinder = 1MB approx.
+Number of cylinder * 1MB / 1024 = nth GB
+
+case 1 = if we have 16GB HDD and it is called sda
+and we create a partition of 24MB sda1 so it will use 3 cylinder
+exmaple : 3 + 8MB = 24MB
+
+if we create a 96MB partition it is called sda2 so it will use 12 cylinder
+example : 12 * 8MB = 96MB
+
+Calculate in v6
+fdisk -l = to list all sd drivers storage details
+get total cylinders 
+total 2480 for sda
+for example unites: cylinder of 8225280 bytes
+End - Start = cylinder  sda1 * 8MB / 1024 in GBs
+
+total cylinder 409 for sdb
+for example unites: cylinder of 1048576 bytes
+End - Start = cylinder sdb1 * 1MB / 1024 in GBs
+
+* In v7/8
+sfdisk -l = to list all sd drivers storage details
+get total cylinders 
+total 2480 for sda
+for example unites: cylinder of 8225280 bytes
+End - Start = cylinder  sda1 * 8MB / 1024 in GBs
+
+total cylinder 409 for sdb
+for example unites: cylinder of 1048576 bytes
+End - Start = cylinder sdb1 * 1MB / 1024 in GBs
+
+----
+v7/8
+
+fdisk -l = to list all sd drivers storage details
+get total sectors
+total 2480 for sda
+for example unites: sectors of 512bytes
+End - Start = sectors sda1 * 512B / 1024 in KBs
+End - Start = (sectors sda1 * 512B) / 1024  / 1024 in MBs
+End - Start = (sectors sda1 * 512B) / 1024  / 1024 /1024 in GBs
+
+---
+
+* to know the free space :
+start value from sda1
+End value from sda3
+
+v6
+End - start = rmaining cylinder * 1 or 8 = total free space 
+
+v7/8
+End - start = remaining sectors * 512 = total free space in bytes
+
+sd = sata driver
+Empty HDD = raw hardisk
+if we use 500GB when we insert into PC it shows example = 465GB
+it shows less Storage capacity
+
+Q = why operating system shows less storage capacity
+Ans = I read the answer someone gave about an indexing table 
+and chuckled as that is the wrong answer. The reason the drive 
+doesn't show as 4TB in your OS is because, since the beginning 
+of time, hard drive manufactures consider 1 kilobyte as 1,000 bytes, 
+1 megabyte as 1,000 kilobytes, 1 gigabyte as 1,000 megabytes and 1 
+terabyte are 1,000 gigabytes. That is a marketing gimmick. In reality 
+1 terabyte is 1,024 gigabytes and so on down the line. That means 
+manufactures consider 1 terabyte as 1,000,000,000,000 bytes, but in 
+reality 1 terabyte is 1,099,511,627,776 bytes, because computers are 
+binary systems (powers of 2). So a 4 TB labeled drive isn't actually 4 TB, 
+it's actually a bit less, because manufactures are using the wrong value to 
+represent gigabytes, terabytes, etc. as a marketing gimmick.

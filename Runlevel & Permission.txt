@@ -1,0 +1,101 @@
+--- Run Level ---
+run level are between 0-6
+runlevel = to check current runlevel
+init <level-num> = to migrate to specific runlevel
+
+--- in CentOs 6 or older ---
+press arrow to interupt and press a to modify
+and press 1 then it goes to the root directly without password
+then can update  root password
+
+-- reset root passwd CentOs 7/8--
+reboot and press up arrow key on splash screen
+& then press e then find linux16 by pressing down key
+then add rd.break end of this line after LANG=en_US.UTF-8
+and press ctrl x
+then run mount -o remount,rw /sysroot 
+&  chroot /sysroot
+then run echo “New-root-password” | passwd --stdin root
+& touch /.autorelabel
+& then reboot -f
+
+-- Runlevel chart --
+Runlevel 0 = shuts down the system
+
+Runlevel 1 = single-user mode
+
+Runlevel 2 = multi-user mode without networking (without NFS)
+
+Runlevel 3 = multi-user mode with networking (terminal)
+
+Runlevel 4 = user-definable (unused)
+
+Runlevel 5 = multi-user mode with networking (GUI)
+
+Runlevel 6 = reboots the system to restart it
+
+cd /opt
+mkdir maven
+cd maven
+touch mongo
+chmod 000 mongo
+cd ..
+drwxr-xr-x 1 aadi aadi maven
+chmod 551 maven
+now user can not delete mongo file inside maven folder
+
+if all user in group have write permision for sirectory 
+and file permmsion are off then group users can delete file 
+if dont have permission then can not delete file
+
+
+if we remove all permission from file using octal or symbolic way
+then others can not delete file and owner or root user can delete that file
+using inherited permission
+ it uses inherited permission from parent  directory
+if parent directory has no  write permission then owner can not also delete file
+
+Assign/Remove user a group 
+usermod -aG <group-name> <user-name>   = assign suplimentory group to user
+gpasswd -a <user-name> <group-name>    = assign group to user
+usermod -G "" <group-name> <user-name> = remove all other group 
+gpasswd --delete <user-name> <group-name> = remove any specific group from user
+
+
+-- change attribute --
+chattr = command is used to change file/folder attribute
+i = i is flag stands for immutable
+a = a is a flag stands for append
+
+chattr +i <file-name> = to make file immutable even root can not delete it
+& file can not be updated
+chattr -i <filr-name> = to remove file immutable attribute
+
+lsattr <file-name> =  to check if chattr +i is set 
+
+-- permission --
+r = read  = 4
+w = write = 2
+x = exec  = 1
+symbolic way = u+rwx, u+r-w+x, g+rwx, g-r+w-x, o+rwx, o-rwx
+octal way    = u+rwx = 7, u+r-w+x = 5, g-r+w-x = 2, o-rwx = 0
+
+chmod -Rv 755 maven 
+chmod -Rv <octal-num> <folder-name> = apply permission on all child files &
+folder inside a dir
+
+-- access control list ---
+user specific permission
+u = user
+g = group
+o = other
+setfacl -m u:<username>:rwx <file/folder> = to add specific user acl
+setfacl -x u:<username> <file/folder> = to remove specific user acl
+
+setfacl -m g:<groupname>:rwx <file/folder> = to add specific group acl
+setfacl -x g:<groupname> <file/folder> = to remove specific group acl
+
+setfacl -m o:rwx <file/folder> = to add other acl
+
+getfacl <file/folder> = to get all permission
+

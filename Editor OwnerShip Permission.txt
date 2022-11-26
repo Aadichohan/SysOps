@@ -1,0 +1,49 @@
+ctrl + shift + n = to open new terminal
+su -  <username> =  to switch from root to normal user
+chattr +i <file-name> = change attribute command to restrict root from deleting
+file
+vim <filename>
+:X = enter key to protect content with password
+:X = enter empty to remove password
+
+vi <filename>
+:set nu = for setting row num
+:set nonu = for hiding row num
+:<row-num> = to go to any specific row
+/<string-to-be searched> = to search any apecific word in file
+/<string-to-be searched> press n = to search any apecific word by word in file
+/<string-to-be searched> press shift+n = to reverse search any apecific word by word in file
+
+--- split -- 
+vi <filename>
+esc :split  = to split horizonataly
+esc :vsplit = to split verticaly
+esc :split /<dir>/<file> = to split & open new file
+ctrl+ww = to switch between splited window
+
+--- nano editor---
+add text directly
+ctrl + O = for writing & save text
+shift + alt + A = to select text <mark set>
+shift + alt + 6 =  to copy text
+ctrl + 6 = to end select mode <mark Unset>
+ctrl + U = to paste
+ctrl + K =  to cut text
+
+----permissions----
+read    = r = 4
+write   = w = 2
+execute = x = 1
+
+r = minimum is required to read and copy the file
+w = minimum is required to write and delete
+x = is required to execute 
+chmod u+rwx,g+r-w+x,o-rwx <file/folder> = symbolic way
+chmod 465 <file/folder> = octal way
+where 4 = u = r, 4+2 = 6 = g = rw, 4+1 = 5 = o = rx, 0 = remove all permission
+  
+-- in folder --
+drwxr-xr-x root root <folder>
+r = only can read the folder content
+w = can create file & folder in the folder
+x = can go inside the folder

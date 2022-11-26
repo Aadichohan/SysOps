@@ -1,0 +1,120 @@
+Runlevel 2,3,4 user VCS
+VCS = virtual console
+ps = process status
+* there can be up to 6 vcs
+* if we use command ps it shows tty1 if  we press Alt+F2 it opens second console
+and tty3 is created and then press Alt+F3 it opens third console tty3 and till 
+Alt+F6 so on so forth
+tty1, tty2, tty3, tty4, tty5, tty6
+* tty = teletype terminal
+* if we goto run 2 or 4 from 3 it terminates all previous vcs and open new vcs
+* if we are at runlvel 3 by default it loads vcs but after that we can load 
+GUI Gnome but it just uses tty driver  not pts and not like fully runlevel 5
+mostly compinies use runlevel 3
+
+* if we use runlevel 5 graphical GUI it uses Gnome terminal
+and it uses pts if we type ctrl+shift+n it opens new terminal and it uses pts1
+and there can be approx. upto 400 terminals 
+* if at runlevel 5 by default it starts Gnome terminal if it fails to start gui it open vcs
+* pts = Pseudo terminal Secondary
+
+* if we use putty for taking remote connection from windows of linux machine
+putty uses pts and it show system current runlevel
+
+startx = to run GUI from runlevel 3
+pkill x = to stop GUI from runlevel 3
+
+case 1 = if user install GUI server it can run startx from runlevel 3
+case 2 = if user install minimal it can not run startx from runlevel 3 to run GUI
+because GUI package is not installed but the package can be installed using yum
+
+runlevel    purpose
+ 0           Shutdown
+ 1           Single user mode
+ 2           Multiuser without networking
+ 3           Multiuser with networking
+ 4           Unused
+ 5           GUI with networking
+ 6           Reboot
+ 
+1- when the machine is powered on 
+2- splash screen shows
+3 - then it loads /etc/inittab in CentOs 6 or earliar version
+and in CentOs 7/8 it loads default.target from /etc/inittab
+for initiliazing defult runlevel
+
+case 1 = if we set default runlevel 6 in /etc/inittab in CentOs 6 or older version
+and set default target in CentOs 7/8 it keeps rebooting
+to solve this we need to interupt splash screen by pressing in CentOs 6 down arrow
+ and a to modify and in CentOs 7/8 press e
+then type 5 for going to runlevel 5 and enter and  in CentOs 7/8
+find linux16 linux /vwlinuz ....... UTF8 at the end <space> type 5 and press CTRL+X
+to go to go on runlevel 5 temperary to reset default runlevel
+* set default runlevel
+
+shutdow -r now = for shutdown and reboot system
+CentOs 6 or older
+id:5:initdefault: set this by sing vi editor
+
+CentOs 7/8
+link for reference : 
+https://www.thegeekdiary.com/rhel-centos-7-how-to-set-default-target-replaced-runlevel/
+
+systemctl set-default <runlevel0.target>
+systemctl set-default <poweroff.target>
+
+
+systemctl set-default <runlevel2.target>
+systemctl set-default <multi- user.target>
+
+systemctl set-default <runlevel3.target>
+systemctl set-default <multi- user.target>
+
+systemctl set-default <runlevel5.target>
+systemctl set-default <graphical.target>
+
+systemctl get-default = for printing default runlevel
+
+Run Level	Target Units	                 Description
+0	runlevel0.target, poweroff.target	   Shut down and power off
+1	runlevel1.target, rescue.target	           Set up a rescue shell
+2,3,4	runlevel[234].target, multi- user.target   Set up a nongraphical multi-user shell
+5	runlevel5.target, graphical.target	   Set up a graphical multi-user shell
+6	runlevel6.target, reboot.target	           Shut down and reboot the system
+
+Case 1 = if we forgot root password
+then in CentOs 6 or older
+press arrow to interupt and press a to modify
+and press 1 then it goes to the root directly without password
+then can update  root password
+
+in CentOs 7/8
+ intrupt splash screen by pressing e and find linux16 /vwlinuz ....... UTF8
+and at the end of line press space and type rd.break then press ctrl+x promt shows like
+switch_root:/# mount -o remount rw /sysroot
+switch_root:/# chroot /sysroot/
+sh-4.2# passwd root = to update root password
+sh-4.2# touch /.autorelabel
+sh-4.2# exit
+switch_root:/# exit
+
+* To Secure single usermode with password
+cd /etc/sysconfig
+in CentOs 6 or older
+vi init
+#Set to  '/sbin/sulogin' to prompt for password on single-user mode
+#Set to '/sbin/sushell' to login without password
+# SINGLE TAG
+SINGLE = /sbin/sushell
+or
+SINGLE = /sbin/sulogin
+
+in CentOs 7/8 single mode user is bydefault password protected
+but it can go to root by rd.break password reset sysroot method without password 
+ to protect it visit site: 
+https://www.tecmint.com/password-protect-single-user-mode-in-centos-7/
+
+using ths command  = grub2-setpassword
+
+ 
+

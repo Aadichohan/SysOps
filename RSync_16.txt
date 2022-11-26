@@ -1,0 +1,98 @@
+Backup Types
+
+1-  Full Backup
+2 - Incremental Backup
+3 - Differettial Backup
+4 - Camulative Backup
+
+
+Rsync uses Inremental Type of Backup, Rsync on copies the files & folders to the remote machine or folder  or tap drive 
+does not compress or archives it for this we use tar or zip using pipe like rsync | tar, rsync | zip 
+by default cp does not copy folders on files are copied to copy folders we use -rf flag = recurcive force
+
+cp -rf /opt/my-files/*    /home/user/Downlaods = to copy all files with absolute path to a destination = 3
+-rvf = recurcive verbose force
+Q: How use Rsync with tar & zip ?
+
+
+first use of cp command
+cp --help
+cp  <file-name> <destination-path> = to copy files to a destination
+cp *   <destination-path>          = to copy all files with relative path to a destination         = 1
+cp ./*               /home/user/Downlaods = to copy all files with relative 'path to a destination = 2
+cp /opt/my-files/*    /home/user/Downlaods = to copy all files with absolute path to a destination = 3
+
+Q: Which cp command is better 1, 2 or 3 ?
+A: 3 is better because if admin comes 3rd day and he is on root / and he presses up key to find previously excuted
+   command and if it is 1,2 then all root files & folders will be copied to that folder unlike 1,2 3 wiil excuted 
+   absolute path then it will copy on specific folder's data so it's safe.
+
+on every attempt cp command copies all files and  paste new file & overwrites previous files
+rsync is better than cp because rsync does not overwrites
+
+-p = preserve permission
+-a = archive mode
+-r = recursive
+-v = verbose
+-z - compress
+
+rsync --help
+rsync <options> <source> <destination>
+rsync  /part1/*  /part2/      = to backup all files from this partition to another but skipping directories
+rsync -rv  /part1/*  /part2/  = to backup all files & folders from this partition to another recurcively
+rsync -arv /part1/*  /part2/  = to backup all files & folders with archive from this partition to another
+rsync -parv /part1/*  /part2/ = to backup all files & folders with archive, preserved permission, recurcively, 
+                                 verbose from this partition to another
+
+rsync -avz /part1/*  /part2/  = to backup all files & folders with archive, compress, verbose from this partition 
+                                to another
+
+rsync -parvz /part1/*  /part2/  = to backup all files & folders with archive, preserved permission, recurcively, 
+                                 verbose, compress from this partition to another
+
+use include & exclude flags
+
+stat <filenme> = command to check statistic about file
+NOTE: Rsync does not read the content it just campare accesstime(atime) and modifytime(mtime) and overwrite whole file
+Access Time (atime)
+Modify Time (mtime)
+Change Time (ctime)
+
+if file is accessed then atime is changed
+if file content is modified then mtime is changed
+if ownership, access permission or content is changed then ctime is updated
+
+Rsync compares source & destination files modified time, if any chnages in source then it will copy only the 
+incremental data
+
+Linux backup tools : tar, zip, rsync, cp, scp
+gzip, bzip2 are not backup tool  these dont create new files they just compress file and change extension 
+Organaization backup application
+1 - Comercial application:
+  > Veritas NetBackup
+  > Windows NT Backup
+  > TSM
+  > Veeam
+  > Dell Networker
+  > EMC Networker
+  >
+2 - Open Source application:
+  > AMANDA 
+  > ZAMANDA
+  > BACULA
+  > BACKUPC
+
+ 
+Rsync is also used for remote machine backup, 2 protocols are used ssh, scp syntax for remote backup is:
+rsync -parvz <or any flags> <source-path> <remote-server-ip:path>
+rsync -parvz ./*  172.174.44.3:/usr/files/ = for destination root user asks for passwrd
+rsync -parvz ./*  sharfu@172.174.44.3:/usr/files/ = for destination non root user asks for passwrd
+
+Q: Delete files from detination that does not exist in source ?
+A: rsync -parvh --delete /source/  /destination/
+Dont use * if you are deleting files from destination
+
+Q: Search Rsync 15 Example ?
+
+
+

@@ -1,0 +1,43 @@
+/boot = all bootable files , kernal file
+/dev  = all device drivers
+/etc  = all service (apache, tomcat, docker etc.) /config files
+/usr/bin = all command's file for normal and all users
+/user/sbin (super bin)= all command mostly for super user
+lost+found/ = this directory contains all data recovered files
+take snapshot before deleting any file
+
+rm -rf /* = to remove whole os
+
+/home/<user-names> = all normal user directory
+/root = root user directory
+/usr = program files dir in windows
+/lib = has .so files like .dll files in windows
+
+find . -name "<filename.extension>" = to search for specific files
+find . -name "*.so"
+ls | grep <file-name> = searches the file with the name matching pattern
+/var = all logs files are saved in variable dir
+/opt = for optional softwares
+/mnt = for mount points
+
+======  vi editor =====
+vi <file-name>
+
+press i to go to insert mode
+press escape key to get out of insert mode
+press :wq to save and quit
+press :q to only quit without saving
+press :w to only save without quiting
+press :wq! to save and quit forcefully
+press :w! to only save forcefully
+press dd to delete a line
+press 2 dd <any-number> dd to delete number of lines
+press yy to copy line
+press p to paste a line
+press dw to delete word
+press ye to copy word
+press x to delete single letter
+press u to undo
+vi editor has 40-50 modes
+vim editor is enhanced version of vi editor
+:X to encrypt file with key

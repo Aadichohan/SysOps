@@ -1,0 +1,15 @@
+df = command to see file system
+df -h = command to seek file system in memory
+pwd = to see current working directory
+mkdir <folder-name> = to make directory
+rmdir <folder-name> = to remove directory
+touch <file-name> = command to create file if file extension not defined  by default creates .txt file
+rm <file-name> = to remove file with are you sure permission
+rm -rf <file-name> = to remove file recursive forcefully without asking for permission
+whatis <command-name> = to see command short description
+man <command-name> = to see command full detail
+
+<command-name> --help = to see command flags
+
+cd /home/<user-name>/Downloads = absolute path
+ cd / , cd home , cd <user-name> = Relative path

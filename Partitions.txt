@@ -1,0 +1,51 @@
+Task:
+1 - Adding disk from VM of 800MB
+2 - Discover Hardisk inside you  vm
+3 - fdisk --- create partitino of 800MB
+4 - w --- save update partition table
+5 - partx -a --update kernel table
+6 - formate partition with mkfs.ext4
+7 - create directory using mkdir /dir-name
+8 - mount /dev/sd*  /dir-name/ 
+9 - verify using df -h
+10 - adding in fstab -- to persistem
+-------------------
+First add storage in vm
+
+fdisk -l = for listing disk driver like sda sda1 sda2 sda3, sdb, sd*
+ls /dev/sd* = for listing all sd's
+
+echo "- - -" > /sys/class/scsi_host/host0/scan = to discover new added storage
+fdisk /dev/sd* =  go into fdisk console
+command (m for help):
+m     = for menu
+p     = printting
+n     = new 
+w     = write save
+partition type
+press p = for primary
+press e = for extended
+
+partition number (1-4, default 1):
+press 1
+
+First Sector(2048-1638399, default 2048):
+Enter blank
+
+Last sector, +sectors or size{K,M,G} (2048-1638399, default 1638399): +700M
+command (m for help): p
+
+command (m for help): w
+
+partx -a /dev/sd* = for adding partition
+
+We can access/use that partition after creating filesystem formating
+mkfs.ext4 /dev/sd* = for formating partitions
+
+now creating mount point
+
+mkdir /mysql/
+
+mount /dev/sd* /mysql/
+
+

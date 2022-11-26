@@ -1,0 +1,30 @@
+there is two types of links :
+1 - softlink/symbolic/symlink : a shortcut like windows can be cross partition with new file inode
+if orignal file is deleted then you can not access content from softlink file
+but if you delete softlink file it does not effect on orignal file and 
+is esay to access
+
+2 - Hardlink : a type of backup of a file but if all data from same prtition is 
+deleted then it ha no benifit and can not be crossed partition 
+because it creates same inode num for hardlink file like orignal one because
+there could be anyother file with same inode
+
+soflink = ln -s <orginal-file-path-with-name> <shorcut-path-with-file-name>
+hardlink = ln <orginal-file-path-with-name> <shorcut-path-with-file-name>
+
+ls -lh <shortcut-file-name> = to check link between orignal and shortcut
+ls -ilh <both-file-name> =  to check i node num and file counter on both orginal 
+and hardlink files
+
+find <path-of-orignal-and-hardlink-file> -inum <inode-num> = to find number 
+of files with same inode num
+
+df -h = to check partition in the operating system
+cp <file-name> <copy-path> = to copy and paste file from one location 
+to another
+
+mv <filePath/fileName> <move FilePath> =  to cut & paste file from one location
+to another
+
+mv <fileName> <new Name> = to rename file in current directory
+mv <filePath/fileName> <move Path/fileName> = to rename and move file 

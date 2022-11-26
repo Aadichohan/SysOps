@@ -1,0 +1,82 @@
+step 00 = echo "- - -" > /sys/class/scsi_host/host0/scan = to discover new inserted storage to sd* drivers
+step 0 = fdisk -l = to longlist all sd* driver
+step 1 = fdisk
+step 2 = create partition
+step 3 = press w to save partition table
+       = press p to print all child drivers in specific parent driver from fdisk menu
+       = press d to delete specific child driver from fdisk menu
+step 4 = partx -a /dev/sd*  or partprobe /dev/sd* = to update kernal table 
+(in case if system reboots then no need to run this command)
+
+step 5 = format disk = using mkfs.ext3 or mkfs.ext4 /dev/sd* ,
+type mkfs & press tab key = to see all available formatting methods
+there are different types of formatting commands (ext2, ext3, ext4, xfs, cramfs, fat, msdos, btrfs, minix, vfat) 
+some other fs formates (ZFS, GFS, HDFS, CIFS, NFS)
+there is no thumb rule to use any specific format for any specific version
+Format          ext2    ext3    ext4    xfs
+RHEL Linux OS    v4      v5      v6     v7/8
+
+step 6 = mkdir <folder-name>
+step 7 = mount /dev/sd* /<dir-name> = to mount driver to a folder
+step 8 = df -h = check mounted partition
+
+this mount is not persistent it is loaded into ram if machine is reloaded then  the partition will be unmount
+so to make it persistent & auto mount  we have to add it inot /etc/fstab file
+why to add into fstab file ? because it's a boot process file means it loads when machine 
+load/boots it stores mounting details
+fstab means = file system table, it is said to be 9th critical file in linux
+Q: how many fields in fstab file?
+A: There are 6 fields
+
+umount /<dir-name>/ = to unmount partition
+-----------------
+in windows formatting is called data wipeout/ permenant delete 
+in linux we use rm -rf for permenant delete
+
+Q: does data deletes permenantly ?
+A: No data never deletes just it's reference is deleted, data can be recoverd by data recovery tool, if data is
+   overridden then it can not be recoverd
+
+in Linux format means to create or recreate file system, create index data or metadata, metadata means data of data
+metadata = (my own detail) is information about a file: user ID of who owns it, permissions, file type (special, regular, 
+named pipe, etc) and which disk-blocks the file uses
+
+filesystem creates index like book
+filesystem = metadata or collection of indexing data
+FS includes = (Inode + InodeTable + Blocks + SuperBlocks + Mount Information ) in indexing
+In Partition FS takes small space even if there is no data written
+
+Q: 6 Partitions how many drivers ?
+A: There will be 7 drivers  sdb, sdb1, sdb2, sdb3, sdb4, sdb5, sdb6
+
+Q: if 7 drivers & 6 partitions how many FS will be created ?
+A: There will be 6 FS means equal as per partiton count  
+
+Q: if 7 drivers & 6 partitions how many partition table will be created ?
+A: There will be 1 partition table
+
+/etc/fstab
+it is used to create automount on system reboot, it has 6 arguments
+1 - device driver
+2 - mount point
+3 - fileSystem type
+4 - permission
+5 - fsckdump
+6 - fsck on off sequence
+
+for example:
+/dev/sdb1            /phpmyadmin          ext4               default         0           0
+(device driver)      (mount point)   (fileSystem type)    (permission)   (fsckdump)   (fsckOnOffSequence)
+
+in v6 or earlier
+
+add mount device as like given example above
+
+in v7/8
+
+add mount device as like given example above
+or
+blkid = this command create UUID for all device drivers
+
+UUID                       /<dir-name>        fileSystemType     default          0                0 
+(device driver UUID)      (mount point)   (fileSystem type)    (permission)   (fsckdump)   (fsckOnOffSequence)
