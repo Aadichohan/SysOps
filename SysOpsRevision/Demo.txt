@@ -1,0 +1,38 @@
+1) To zoomIn terminal ctrl + shift + (+) To zoomOut ctrl + shift + (-)
+2) in Linux Terminal is called Gnome terminal or emulator
+3) all commands in linux are developed in C language & then converted into binary
+4) exe does not work in linux by default
+Linux                 vs   Windows
+
+bin                     | exe
+rebot                   | restart
+file system hierarchy   | registry
+no defragmentation      | de fragmentation
+
+5) every command file in linux is bin file
+
+=== commands ====
+Note: use --help for getting flag & info about every command
+1) ls = for list items (file, folders) in any directory
+   ls  has muliple flags commanly used flags are:
+   1) -l for longlist
+   2) -h for human readable
+   3) -d list directories for itself not for its content
+
+2) df  = for printing file system hierarchy partition and mount point
+   df has multiple flags are:
+   1) -h to print detail in human readable format
+
+3) date               = for printing system's date
+3) pwd                = (print working direcory) for printing current working directory
+4) mkdir<folder-name> = for creating new directory
+5) touch<file-name>   = for creating a new blank file by default it creates txt file if extension not mentioned
+6) rm<file-name>      = for creating a file it has multiple flags
+   1) -f for forced removal
+   2) -r for recursively delete folder
+
+7) whatis<command-name> = for printing knowledge about the command
+8) man<command-name>    = for printing manual details knowledge about command
+9) cd<path>             = to navigate to the destination
+   1) absolute path     = cd /home/root/
+   2) relation path     = cd /, cd home , cd root
