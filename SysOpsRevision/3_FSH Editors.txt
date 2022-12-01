@@ -1,0 +1,15 @@
+kernel = kernal is a engin of OS
+1) /boot  = boot loader is the key to load operating system
+vmlinuz is the main file if it is deleted then whole os will crash
+there are 2 bootloaders inside /boot now grub2(Grand unified bootloader) is used 
+before lilo(Linux Loader) was used
+
+Q: what is most important direcroty?
+A: it's /boot
+
+Note: like in windows exec file there is bin (binary file) in linux
+2) /dev   = all device drivers are here
+
+3) /etc   = all application service configuration files are here like docker, apache, nginix, tomcat
+
+4) /usr/bin = all user related commands are in this directory like ls, pwd, whatis, mkdir etc...

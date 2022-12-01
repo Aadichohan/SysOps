@@ -1,0 +1,22 @@
+absolute path = fully qualified name, specifing the exact location of file or folder it begins at the(/) 
+root directory
+
+relative path = unlike absolute path specify only necessary path to reach the file from working directory
+
+use online terminals webminal, lxd linux terminal, linuxzoo.net
+for android mobile: juice ssh , for iphone: ssh terminal
+
+Windows is single usermode while linux is multi user mode
+
+=== commands ====
+Note: use --help for getting flag & info about every command
+0) ctrl+shift+n = for opening new terminal can create approx 400 terminal & it can increase based on OS verion 
+1) touch <path-optional><file-name>   = to create new file to create multiple files at the same time touch <file-name>{1..10}
+2) rm <path-optional><file-name>      = to remove multiple file at the same time rm dataFile{1..2} or dataFile*
+3) mkdir <path-optional><folder-name> = to create folder or multiple folder mkdir <folder-name>{1..3} 
+                                        or create new parent to child directory using -p flag
+4) rmdir <path-optional><folder-name> = to remove folder or multiple folder rmdir <folder-name>{1..3} or <folder-name>*
+5) df                                 = displays mounted points
+6) whoami                             = to see with which account i am login 
+7) whoami                             = to see detail view which account i am login
+Flags: differentiate command, changes default behaviour output

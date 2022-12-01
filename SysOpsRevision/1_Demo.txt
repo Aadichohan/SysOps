@@ -36,3 +36,5 @@ Note: use --help for getting flag & info about every command
 9) cd<path>             = to navigate to the destination
    1) absolute path     = cd /home/root/
    2) relation path     = cd /, cd home , cd root
+
+extra commands cmp, diff, find , ifconfig, ip address, grep, awk
