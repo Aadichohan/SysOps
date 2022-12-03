@@ -8,8 +8,87 @@ Q: what is most important direcroty?
 A: it's /boot
 
 Note: like in windows exec file there is bin (binary file) in linux
-2) /dev   = all device drivers are here
+2) /dev         = all device drivers are here
 
-3) /etc   = all application service configuration files are here like docker, apache, nginix, tomcat
+3) /etc         = all application service configuration files are here like docker, apache, nginix, tomcat
 
-4) /usr/bin = all user related commands are in this directory like ls, pwd, whatis, mkdir etc...
+4) /usr         = all user's software and application installations are in it
+
+5) /usr/bin     = all user related commands are in this directory like ls, pwd, whatis, mkdir etc...
+
+6) /usr/sbin    = (super bin) all admin user related commands are in this directory
+
+7) /lib/modules = so files are here ao files stands for shared object files like dll files in windows
+                  The SO file stands for Shared Library. You compile all C++ code into the.SO file 
+                  when you write it in C or C++. 
+
+
+8) /lib         = it contains the kernal modules and a shared library
+
+9) /var         = all lof files are here
+
+10) opt         = for third party softwares
+
+11) mnt         = it contains temporary mount directories for mounting file system
+
+==== command =====
+   find --help
+1) find <path> --name "<text-to-find>" = to find any file in any specfic directory
+
+Note: Normal user's home directory is in /home/<user-dir> & root user home directory is /root
+
+=== vi editor ===
+12) vi <file-name> = to edit or add or read content on any file
+Tab completion in linux = if we type any word half <file-folder> in linux then tab if it matches it is compeleted
+g-edit in linux = notepad in windows
+vi  has 40-50 mode including insert mode
+1)  press i    = to start insert mode
+2)  press esc  = to end insert mode
+3)  press :q   = to only quit
+4)  press :w   = to only write
+5)  press :wq  = to write & quit
+
+6)  press :q!  = to only forcefully override quit
+7)  press :w!  = to only forcefully override write
+8)  press :wq! = to forcefully override write & quit
+
+9)  press dd   = to delete any row
+10) press <num>dd = to delete more than one lines from current line to below exmp: 3 dd
+11) press yy   = to copy any row
+12) press <num>yy = to copy more than one lines from current line to below exmp: 3 yy
+13) press p       = to paste copied word/row 
+14) press x    = to cut word
+15) press dw   = to delete word
+16) press u    = to undo
+17) press ye   = to copy word
+18) press :%s/<current-word>/<text-to-replace>/g
+
+=== vim editor ===
+vim is enhanced version of vi editor
+12) vim <file-name> = to edit or add or read content on any file
+Tab completion in linux = if we type any word half <file-folder> in linux then tab if it matches it is compeleted
+g-edit in linux = notepad in windows
+vi  has 40-50 mode including insert mode
+1)  press i    = to start insert mode
+2)  press esc  = to end insert mode
+3)  press :q   = to only quit
+4)  press :w   = to only write
+5)  press :wq  = to write & quit
+
+6)  press :q!  = to only forcefully override quit
+7)  press :w!  = to only forcefully override write
+8)  press :wq! = to forcefully override write & quit
+
+9)  press dd   = to delete any row
+10) press <num>dd = to delete more than one lines from current line to below exmp: 3 dd
+11) press yy   = to copy any row
+12) press <num>yy = to copy more than one lines from current line to below exmp: 3 yy
+13) press p       = to paste copied word/row 
+14) press x    = to cut word
+15) press dw   = to delete word
+16) press u    = to undo
+17) press ye   = to copy word
+18) press :%s/<current-word>/<text-to-replace>/g
+
+19) press :X & then :wq = enter key to protect file with passwd
+20) press :X & then :wq = enter empty key to remove protection from file
