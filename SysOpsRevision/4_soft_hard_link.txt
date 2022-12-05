@@ -1,0 +1,95 @@
+=== Create Soft Link ====
+ln -- help = to seek help for creating link
+ln -s <orignal-file> <link-file> = to create soft link
+ln -s <path/orignal-file> <only-path> = to create softlink file with same name
+
+softlink in linux = shortcut file in windows
+if we write data in softlink file it write data in orignal file
+Note: in soft link/symlink if we delete orignal file then link file is broken then we can not read/write link file 
+      while orignal file has been deleted permenantly and if we create new file with the name of orignal file
+      then softlink works but content of orignal file is lost and can not be recovered
+
+      example: file_1 = orignal file & create link file file_ln_1 with command ln -s file_1 file_ln_1
+                        then  ls -l to see link between these files with arrow sign then delete orignal file & then ls -ls
+                        then it shows orignal file ideleted and link file is broken and marked as black background
+                        & red font  if we re create orignal file then ls -l it shows link between files again
+                        but content is lost
+
+=== Difference between soft & hard link =====
+1) soft link can be across partition
+2) in soft link inode number is different
+
+1) hard link can not cross partition
+2) in hard link inode number is same
+
+== Advantages & Disadvantages of SoftLink/SymLink ==
+Adv:
+1) Easy to access
+2) Can be across partition & directories
+DisAdv:
+1) If parent gets deleted child file becomes orphan -no use
+
+== Advantages & Disadvantages of HardLink ==
+Adv:
+1) Type of a backup
+2) If parent is deleted then no impact on child
+DisAdv:
+1) Cannot cross partition & dirs example (failed to create hard link ‘/part7/vi_ln_h1_2’ => ‘/root/Desktop/vi_editor/vi_s1’: Invalid cross-device link
+                                  s)
+
+=== Create Hard Link ====
+Cannot cross partition if we write data in hardlink file it write data in orignal file
+
+Side Note: 
+    1) There are 2 senarios: 
+           1) if linux os is installed on single root / partition then all (usr, home, var, boot) are directories 
+           2) if linux os is installed in partition then we can check difference between only directories & 
+              partition + directories using df -h & ls commands
+    2) for security purpose we dont install os in single partition we install os in different partition
+
+    in normal file link count is 1 if we create hard link file then it becomes 2 if has 1 hard link and increase on
+    creation of every new hard link
+     example:
+     -rw-r---r--. 2 root root 22 Dec 3 07:14 orignal-file
+     -rw-r---r--. 2 root root 22 Dec 3 07:14 hardlink-file1
+     -rw-r---r--. 2 root root 22 Dec 3 07:14 another-normal-file
+     -rw-r---r--. 2 root root 22 Dec 3 07:14 hardlink-file2 
+
+     in the above example we can not identify which hardlink file belongs to which orignal file
+     so fo that we can see inode numb to identify if inode matches then they belong to each other
+     command = ls -i to see inode number
+
+Reason: why symlink can be created across partition & hardlink can not ?
+        Ans: in symlink it create new file with new inode number and is just a shorcut not 
+             orignal file or it's backup on the other hand in hardlink the inode of all linked file is same
+             if we try to create cross partition  hard link there can be any file presented with same inode before
+             hardlink file creation & it can create conflict 
+ 
+find all files linked with same inode number
+find <path> -inum <inode-num> = find / -inum 2008958
+
+find any file with name
+find <path> -name "<file-name>" = to find file with name find ./ -name "vi*"
+
+number of inodes depends on partition 
+df -i = to check number of inodes
+
+== create hidden file ===
+
+touch .<file-name = to create hidden file touch .gitignore
+ls -ila            = -i for inode & -l for long list & -a for hidden file 
+
+== cp to copy & paste ===
+it is a actual back across partitions & dirs
+
+cp <path/source-file-name> <path/destination-paste-file> = to copy & paste files
+cp -r <path/source-folder-name> <path/destination-paste-folder> = to copy & paste folders
+
+== mv to cut & paste ===
+it is a actual back across partitions & dirs
+
+mv <path/source-file-name> <path/destination-paste-file> = to cut & paste files
+mv -r <path/source-folder-name> <path/destination-paste-folder> = to cut & paste folders
+
+== mv to rename file ==
+mv <path-file/folder-name> <same-path-file/folder-name> to rename file/folder

@@ -62,6 +62,18 @@ vi  has 40-50 mode including insert mode
 16) press u    = to undo
 17) press ye   = to copy word
 18) press :%s/<current-word>/<text-to-replace>/g
+19) type :set nu = to show line number
+20) type :set nonu = to remove line number
+21) type :<line-num> = to jump directly to line number
+22) type /<text-to-search = to search text & press n to search next match | press shift + n for prev match
+
+ in split windows vsplit | split switch between windows press ctrl + ww | to quit :q
+23) :vsplit = split window and open same file into two vertical windows if want to exit then :exit
+24) :vsplit /<path>/<newfile> = split window and open new file with same file 
+                                into two vertical windows if want to exit then :exit
+25) :split  = split window and open same file into two horizontal windows if want to exit then :exit
+26) :split /<path>/<newfile> = split window and open new file with same file 
+                                into two horizontal windows if want to exit then :exit
 
 === vim editor ===
 vim is enhanced version of vi editor
@@ -92,3 +104,17 @@ vi  has 40-50 mode including insert mode
 
 19) press :X & then :wq = enter key to protect file with passwd
 20) press :X & then :wq = enter empty key to remove protection from file
+                          if forgot password then use hacking tool like jhon the ripper
+21) type :set nu = to show line number
+22) type :set nonu = to remove line number
+23) type :<line-num> = to jump directly to line number
+24) type /<text-to-search = to search text & press n to search next match | press shift + n for prev match
+
+ in split windows vsplit | split switch between windows press ctrl + ww | to quit :q
+
+25) :vsplit = split window and open same file into two vertical windows if want to exit then :exit
+26) :vsplit /<path>/<newfile> = split window and open new file with same file 
+                                into two vertical windows if want to exit then :exit
+27) :split  = split window and open same file into two horizontal windows if want to exit then :exit
+28) :split /<path>/<newfile> = split window and open new file with same file 
+                                into two horizontal windows if want to exit then :exit

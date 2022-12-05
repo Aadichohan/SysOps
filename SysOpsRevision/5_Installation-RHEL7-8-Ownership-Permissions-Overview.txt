@@ -1,0 +1,166 @@
+.iso is box image collection of files
+
+centOs 6 has both 32 & 64 bit option 
+but CentOs 7 & 8 has only 64 bit option
+x86-64 = is 64 bit  architecture
+
+i368/i586/i686 = is 32 bit archirecture
+
+arch = check os architechture of os
+uname --help
+uname = check os & hardware information 
+uname -m = check os architechture of os
+
+for example a package voko
+32 bit = voko_i386
+64 bit = voko_x86_64
+both   =  voko_noarch
+
+CentOs7 Installation
+
+7 partition are standard and recomended
+               example size
+1) /            1907MB
+2) /boot        512MB
+3) /var         3814MB
+4) /swap        1024MB
+5) /tmp         953MB
+6) /usr         3814MB
+7) /home        953MB
+
+LVM = logical volume manahement
+
+check os version
+cat /etc/redhat-release = to check os version
+
+in cloud
+cat /etc/os-release     = to check os verison in cloud
+
+=== ownership & permission ===
+ls -l or ll = to longlist items in directory
+
+-rw-r--r--. 1 root root 0 Dec  3 11:30 vi_s1   = longlist
+where      -        rw-r--r--  .    1    root  root    0    Dec  3 11:30  vi_s1 
+      type-of-file                       owner  group
+           -       --------  ---  ---   ---   ---    ---    ----------   -----
+           1          2       3    4     5     6      7         8          9
+1) -            = type-of-file (l = softlink file, d = directory, - = regular file)
+2) rw-r--r--    = permission
+3) .            = SElinux
+4) 1            = link count(in every file count = 1 & if is hardlink then file count equal to 
+                  total link + orignal-file & if directory then total imdiate child directories + hidden directories
+                  (. + ..))
+                  where . = current directory and .. =  parent directory = one dir back
+5) root         = owner
+6) root         = group
+7) 0            = size in bytes
+8) Dec  3 11:30 = access time (last access time)
+9) vi_s1        = file name
+
+Type-of-file 
+There are 7 type of files
+1) l = softlink file
+2) d = directory
+3) - = regular file
+4) b = block file
+5) c = character file
+6) s = socket file
+7) p = pipe device file
+
+when we create file then by default it creates owner & group with user who created this file
+
+There are 9 fields
+r = read
+w = write
+x = execute
+
+rw-    r--  r-- = there are 9 bits
+user group other
+
+123 456 789
+--- = 000 = 0 = it means bitoff  Nill permission
+r-- = 400 = 4 = 1st bit on, 2nd bit off, 3rd bit off
+rw- = 420 = 6 = 1st bit on, 2nd bit on, 3rd bit off
+rwx = 421 = 7 = 1st bit on, 2nd bit on, 3rd bit on means all bits on, full permission
+
+in binary
+r = read  = 4
+w = write = 2
+x = exec  = 1
+
+--- = 000 nill permission
+r-- = 100
+rw- = 110
+rwx = 111 full permission
+
+=== command ===
+u = user
+g = group
+o = other
+a = all
+
+to add u+rwx
+to remove (u, g, o)-rwx
+to remove (u, g, o)+r-w+x
+to remove (u, g, o)+r-wx
+to remove (u, g, o)-rwx
+
+-- for user --
+chmod u+r-wx <file/folder-name>
+chmod u+rw u-x <file/folder-name>
+chmod u+r-x <file/folder-name>
+chmod u+rwx <file/folder-name>
+-- for group user --
+chmod g+r-- <file/folder-name>
+chmod g+rw- <file/folder-name>
+chmod g+r-x <file/folder-name>
+chmod g+rwx <file/folder-name>
+
+-- for other user --
+chmod o+r-- <file/folder-name>
+chmod o+rw- <file/folder-name>
+chmod o+r-x <file/folder-name>
+chmod o+rwx <file/folder-name>
+
+--- for modifying all owner group & other permission ---
+chmod ugo+rwx <file/folder-name>
+chmod ugo-rwx <file/folder-name>
+chmod a+rwx <file/folder-name>
+-- in numbers --
+-- for all user --
+chmod 000 <file/folder-name> = ---------
+chmod 400 <file/folder-name> = r--------
+chmod 440 <file/folder-name> = r--r-----
+chmod 444 <file/folder-name> = r--r--r--
+chmod 644 <file/folder-name> = rw-r--r--
+chmod 664 <file/folder-name> = rw-rw-r--
+chmod 666 <file/folder-name> = rw-rw-rw-
+
+=== change owner ===
+
+chown <owner-name> <file/folder>
+
+== if owner not found ==
+useradd --help
+useradd -c "<user-name>" -m <user-name> -s /bin/bash
+userdel <user-name>     = to delete user 
+userdel <user-name>  -r = to delete user with home user directory
+
+=== change file/folder group ===
+chgrp <group-name> <file/folder>
+
+=== if group not found ===
+groupadd --help
+groupadd <group-name> = add group
+groupdel <group-name> = to delete group
+
+=== add user into another group ===
+usermod --help = to seek help
+usermod -g <group-name> = to change user primary group
+usermod -G <group-name> = to change user suplementory group
+
+user = single user
+group = collection of users
+
+=== check user id information ===
+id <user-name> = to check user uuid, username, gid, group name, groups
