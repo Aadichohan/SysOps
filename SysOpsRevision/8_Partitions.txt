@@ -1,0 +1,9 @@
+Hardisk = it is a storage device where we wtire data
+Hard Disk Type
+1) SATA
+2) PATA
+3) SSD
+4) SAS
+5) USB
+6) SAN
+7) NAS

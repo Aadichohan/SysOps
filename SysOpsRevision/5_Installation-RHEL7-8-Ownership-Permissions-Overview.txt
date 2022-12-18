@@ -94,6 +94,8 @@ rw- = 110
 rwx = 111 full permission
 
 === command ===
+=== user group other (ugo): symbolic way ===
+=== read = 4 , write = 2 , x = 1  octal way octal = 8 cores [0-7]===
 u = user
 g = group
 o = other
@@ -125,7 +127,10 @@ chmod o+rwx <file/folder-name>
 --- for modifying all owner group & other permission ---
 chmod ugo+rwx <file/folder-name>
 chmod ugo-rwx <file/folder-name>
+chmod u+rwx,g+rw, o+r <file-folder-name>
 chmod a+rwx <file/folder-name>
+
+
 -- in numbers --
 -- for all user --
 chmod 000 <file/folder-name> = ---------
@@ -146,8 +151,15 @@ useradd -c "<user-name>" -m <user-name> -s /bin/bash
 userdel <user-name>     = to delete user 
 userdel <user-name>  -r = to delete user with home user directory
 
+=== update password ===
+passwd <user-name>  = To update user password 
+
 === change file/folder group ===
 chgrp <group-name> <file/folder>
+
+=== prevent root & all user  to remove file or folder ===
+chattr +i <file-name> = to prevent all normal & root user to remove file or folder
+chattr -i <file-name> = to remove preventtion all normal & root user to remove file or folder
 
 === if group not found ===
 groupadd --help
@@ -159,8 +171,12 @@ usermod --help = to seek help
 usermod -g <group-name> = to change user primary group
 usermod -G <group-name> = to change user suplementory group
 
+=== Remove user from Group ===
+gpasswd --delete <user> <group> = command to remove user from a specific group
+
 user = single user
 group = collection of users
 
 === check user id information ===
 id <user-name> = to check user uuid, username, gid, group name, groups
+

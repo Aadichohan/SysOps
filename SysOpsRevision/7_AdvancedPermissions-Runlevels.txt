@@ -1,0 +1,82 @@
+Runlevel / Targets
+
+runlevel are different modes in linux
+
+
+=== command ===
+runlevel = to check prev & current runlevel
+init <runlevel-num> = to move to different runlevel 
+
+========== Read Write  Execute ===========
+no read write execute permission required to delete file atleast for only owner
+(the owner and group without read cat file inside 
+                    dir but cannot list ls)
+For Files:
+r = read, copy    | can read and copy file
+w = write, delete | can write/modify content
+x = run           | can execute this file
+
+For Folder (a box):
+r = read          | can read folders & files inside this folder (only owner & group without read cat file inside 
+                    dir but cannot list ls)
+w = write         | can add files & folder into this folder
+x = execute       | can cd into this folder from terminal or can get in the folder by double clicking from gui
+
+inherited permission:
+
+Note: if user, group or other has
+w = permission for folder can create file inside folder & file has no permission
+can write content inside file by using override !
+
+chmod -Rv <sybol/octal> <file-name> = to add permission to folder and child folders &
+                                      files to add same permission -R recursively & -v verbose for printing details
+                                     
+
+======chattr======
+chattr = chattr stands for change attribute somthing like permission to prevent all user including root admin user
+to delete file/folder even useing rm -rf command prevent to delete
+chattr has many attributes for example i
+i (+i, -i) = immutable
+a          = append
+chattr +i <file/folder-name> = to enaable immutable mode
+chattr -i <file/folder-name> = to disable immutable mode
+
+chattr +i not recommended to run on system files because system files generates log if we run this command
+this wiil prevent to generate logs it has to be run on our own data files
+
+lsattr <file/folder-name> = to list & check attributes of file 
+
+========= Advance Permission ==========
+Access control list (ACL)
+
+setfacl --help
+setfacl -m u:<username>:<rwx(optional permission)> <file/folder-name> = to add user specific permission
+setfacl -m g:<groupname>:<rwx(optional permission)><file/folder-name> = to add group specific permission
+setfacl -m o:<rwx(optional permission)><file/folder-name>             = to add other specific permission
+setfacl -m u:<username>:<rwx(optional perm)>,g:<groupname>:<rwx(optional perm)>,
+           o:<rwx(optional permission)><file/folder-name>             = to add other specific permission
+
+setfacl -x u:<username> <file/folder-name>                            = to remove user specific permission
+setfacl -x g:<groupname><file/folder-name>                            = to remove group specific permission
+
+
+setfacl -b              <file/folder-name>                            = to remove all user, group permission
+
+
+======== Runlevel / Targets =========
+As windows has serveral modes: 
+1) safe mode
+2) normal mode
+3) network mode
+
+as like that lunux has runlevel or targets
+1) in rhel/centos 6 or earliar called runlevel
+2) in rhel/centos 7 or 8 called targets
+
+from 0-6 there are total 7 runlevels
+runlevel   = to check current runlevel return 2 number 1st is prev runlevel (if shows N means nothing) 
+             2nd is current runlevel
+init <0-6> = to goto runlevel
+1) 0 = Halt (poweroff)
+2) 1 = Single usermode
+7) 6 = reboot 

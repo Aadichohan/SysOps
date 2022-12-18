@@ -118,3 +118,24 @@ vi  has 40-50 mode including insert mode
 27) :split  = split window and open same file into two horizontal windows if want to exit then :exit
 28) :split /<path>/<newfile> = split window and open new file with same file 
                                 into two horizontal windows if want to exit then :exit
+
+
+
+Teach in video 6_Editors-Ownership-Permissions 
+===== nano ======
+
+nano <file-name>
+just write down like notepad
+& below is menu you can look and try various commands
+
+1) ctrl + o = to save the file
+2) ctrl + x = to exit
+3) alt + shift + a = to select text
+4) alt + shift + 6 = to copy selected text
+5) ctrl + u        = to paste selected text
+6) ctrl + R        = to read another file and add it's content
+7) ctrl + k        = to cut text line
+8) ctrl + w        = to search text in file
+9) ctrl + j        = to justify content
+10) ctrl + y       = to go to start of the file
+11) ctrl + v       = to go to end of file
