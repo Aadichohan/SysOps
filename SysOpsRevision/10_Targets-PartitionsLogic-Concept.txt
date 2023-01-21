@@ -1,0 +1,34 @@
+in CentOs 6
+
+there are 6 runlevel = 0...6
+
+
+in CentOs 7/8
+runlevel = we can also use runelevel to find current runlevel
+init     = we can also use init to navigate to specific runlevel
+
+but native options are
+systemctl isolate <target name> = to switch b/w targets
+
+systemctl isolate default.target    = switch to default target
+systemctl default                   = switch to default target
+systemctl set-default <target name> = to set default target
+systemctl get-default = to get default target
+
+there are targets
+multi-user.target  = runlevel 3
+graphical.target   = runlevel 5
+
+find / -name "runlevel*.target"           = find all runlevels
+systemctl list-units --type target        = to list targets
+systemctl list-units --type target --all  = to list all targets
+
+Run Level	Target Units	                           Description
+0	      runlevel0.target, poweroff.target	            Shut down and power off
+1	      runlevel1.target, rescue.target	            Set up a rescue shell
+2,3,4	      runlevel[234].target, multi- user.target	    Set up a nongraphical multi-user shell
+5	      runlevel5.target, graphical.target	    Set up a graphical multi-user shell
+6	      runlevel6.target, reboot.target	            Shut down and reboot the system
+====
+
+https://www.thegeekdiary.com/centos-rhel-7-begginners-guide-to-systemd-targets-replacement-of-sysv-init-run-levels/

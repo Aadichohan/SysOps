@@ -1,0 +1,113 @@
+There are 7 run levels starts from {0} to {6}
+runlevel = to find current & last runevel
+N = nothing
+S = Single UserMode
+init <runlevel-num> = to navigate to specific runlevel
+
+2 runlevel is console based terminal it has 6 vcs (virtual console)
+3 runlevel is console based terminal it has 6 VCS consoles (virtual console)
+4 runlevel is console based terminal it has 6 vcs (virtual console)
+5 runlevel is GUI based mode & it has approx. 400 gnome terminals
+
+we can switch back & forth using exmple: 
+1) alt+f1 to console1 = tty1
+2) alt+f2 to console2 = tty2
+3) alt+f3 to console3 = tty3
+4) alt+f4 to console4 = tty4
+5) alt+f5 to console5 = tty5
+6) alt+f6 to console6 = tty6
+in vm or actual os when we type ps (process) it shows
+tty{vcs-num} 
+tty{1-6}
+like on console vcs1   = tty1 & console vcs2 = tty2
+tty = teletype terminal
+if we delete any driver of tty{0-6} then it will not might open that vcs console
+ps = to check process status it show the current tty
+
+Note: if we switch from runlevel 3 to 0,1,2,4,5,6 then all operation of vcs in runlevel 3 will be closed 
+& new vcs of rulevel 4 will be open & if we press alt+f2 to switch from tty1 to tty2 it does not stop
+previous vsc & open another upto 6
+
+pts = seudo terminal secondary
+in runlevel 5 it uses pts driver for terminal and it is approx. 400
+means you can use approx. 400 terminal
+
+
+RunLevels & Details
+Linux has 7 runlevel {0..6}
+Runlevel 0   |  Shutdown System
+Runlevel 1   |  Single User Mode
+Runlevel 2   |  Multi User Mode without networking
+Runlevel 3   |  Console Based Multi User Mode with networking
+Runlevel 4   |  User Defined Mode
+Runlevel 5   |  GUI Based Multi User Mode with networking
+Runlevel 6   |  Reboots the System to restart it
+
+in runlevel 3 it uses by default console but it can use gui as well
+startx   = to switch from console to gui in runlevel 3 without using run level 5
+pkill x   = to switch from gui to console where X = gui X server
+
+ctrl + shift + n = to open new terminal
+
+runlevel uses pts = stands for pseudo terminal secondary 
+ps = to check current pts/{num}
+starts from 0 to 399 approx.
+if we are in runlevel 5 then it uses pts
+there are approx 400 gnome terminal & if we use putty to connect remotely from another system to our linux os
+on runlevel 3 then it also uses pts & we can use approx upto 400 teminal
+
+
+=== boot process ===
+1) power on
+2) splash screen
+3) /etc/inittab
+
+==== in CentOS6 ====
+https://www.thegeekdiary.com/set-password-for-single-user-mode-on-linux-centos-rhel/
+
+To set default runlevel after poweron or reboot
+inside /etc/inittab file find id:<num>:initdefault:
+and set you required runlevel number to default init
+ 
+To prevent login without password in single usermode/runlevel 1
+edit file /etc/sysconfig/init then find SINLGE=/sbin/sushell
+and replace SINGLE=/sbin/sulogin
+where SINGLE = Tag & it is assigned value
+then goto run level 1 and enter root password  you will see bash-4.1# 
+to goto root user type sudo -i
+ 
+interview Q: how to recover root password
+to goto runlevel 1 into rescue mode intrupt session splash screen 
+then find rhgb quiet then after that type 1 or s and boot
+root# passwd root  = then type passwd root to change root password
+=== End CentOS6 ===
+
+Q: if server runlevel is 5 & we use putty to connect what is the runlevel in putty terminal ?
+A: it always shows server's current runlevel
+
+==== centOS7/8 ====
+
+=== single user mode ===
+1) intrupt splash screen
+2) the find linux16 & rhgb quit then type 1 togo to single usermode
+
+https://www.unixmen.com/reset-root-password-centos-7/
+
+method 1
+1) power on
+2) intrupt splash screen
+3) find line linux16 & find ro & remove ro & type rw init=/sysroot/bin/sh then press ctrl+x to boot  
+4) chroot /sysroot = then you'll see shell then type 
+5) passwd root     = to change root passwd
+6) touch /.autorelabel
+7) exit
+8) reboot
+
+
+Q: Can we use start x in runlevel 3
+    Case#1 : if we install desktop GUI Server then Yes because it has X server installed
+    Case#2 : if we istall minimal centOS then No because it has not installed X server
+             we have to install X server package
+
+
+            

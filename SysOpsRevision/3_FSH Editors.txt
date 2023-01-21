@@ -25,7 +25,7 @@ Note: like in windows exec file there is bin (binary file) in linux
 
 8) /lib         = it contains the kernal modules and a shared library
 
-9) /var         = all lof files are here
+9) /var         = all log files are here
 
 10) opt         = for third party softwares
 

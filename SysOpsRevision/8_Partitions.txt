@@ -7,3 +7,85 @@ Hard Disk Type
 5) USB
 6) SAN
 7) NAS
+
+HDD Manufacturing companies give the warranty of HDD because it has magnet & by the time it loses its magnetic power mostly company give 3yrs to 5yrs warranty & after that warranty some time it shows input output error writing of data across sectors is called flashing & it is stored in 0 1 binary
+In CentOS 6 or earlier it was calculated in cylinders
+In CentOS 7 it’s calculated in sectors 
+To see hard disk in OS we use device drivers, device drivers are low level program & are interface between Respected software and Hardware, at last drivers are a program in a file
+For Hard Disk drivers it can be /dev/sda , /dev/sdb , /dev/sdc they are loaded initially in ram memory
+For example we have 80GB Hard Disk  & it’s associated with /dev/sda then we create 3 partition into it
+Of (20, 20, 40) GBs then drivers will be associated like this
+Total Hard Disk = /dev/sda
+20GB = /dev/sda1
+20GB = /dev/sda2 
+40GB = /dev/sda23
+
+
+
+
+Another example 100GB
+It will have 5 drivers
+Of (25, 25, 20, 30) GBs then drivers will be associated like this
+Total Hard Disk = /dev/sdb
+25GB = /dev/sdb1
+25GB = /dev/sdb2 
+20GB = /dev/sdb3
+30GB = /dev/sdb4
+
+Assignment search on YouTube:
+1)	How HDD & other hard disk works?
+2)	Inside hard disk?
+3)	How data is written in hard disk?
+4)	Hard Disk types?
+5)	SAN & NAS Working?
+6)	How SSD works?
+
+Hard Disk Companies             
+1)	Segate
+2)	Hitachi
+3)	WD
+Linux Partition Hard Disk
+  Disk Druid:
+    Disk Druid is part of the Red Hat installation program. It features a user-friendly interface, so if                           
+    it does all that you need, by all means use it in place of Linux fdisk
+Tools Command
+  Fdisk, Sfdisk, Cfdisk, Parted
+Fdisk has limitation that it cannot create more than 2TB partition
+
+                                                  
+CAT Task:
+1)	Add Hard disk                            (800MB)
+2)	Discover hard disk                    
+3)	Make partition in hard disk
+4)	Write partition
+5)	Update kernel table
+6)	Mount partition
+
+List all disk partition /dev/sd*
+Fdisk –l                  = to list all /dev/sd*
+Fdisk –l /dev/sdb = to list details of  /dev/sdb
+Step 1: In VM add virtual hard disk using vm settings
+Step 2: The discover hard disk without rebooting using command:
+ Command =  echo  “- - -“ > /sys/class/scsi_host/host0/scan 
+Step 3 make partition using fdisk :
+1)	To view fdisk menu type m
+2)	To make new partition type n
+3)	To make primary partition type p after typing n
+Note: There can be total 4 primary partition if we have to make 6 partition first we need to 3 primary partitions then create an extended partition with whole remaining memory sectors or cylinders then create 4th, 5th & 6th primary partitions with respective size
+
+4)	To write newly made partition type w
+5)	To print newly made partition type p
+6)	To delete partition type d
+Step 4  w – save   = update partition table
+Step 5 Partx –a     = update partition table
+           Partx –a <sd*>
+Step 6 format driver & create file system
+            Command =  mkfs.ext4 <driver> = mkfs.ext4 /dev/sdd
+Step 7
+        Make directory
+Step 8 mount partition
+         Mount <device-driver> </dir> = mount /dev/sdb1 /tomcat
+Step 9 
+          Verify using df -h
+Step 10
+       Persist mount point on reboot using fstab file
